@@ -71,15 +71,24 @@ namespace NBCC_WMAD_Console
              * Prompt the user: "Do you want to list all cars? Y/N"
              * If yes: Loop throught the list of cars and print each car with all properties
              * (right after the car count)
+             * PRICE FORMAT TO CURRENCY
              */
 
-            if(In.GetString("Do you want to list all cars?\n") == "Y")
+            string userGetList = In.GetString("Do you want to list all cars?\n");
+
+            if (userGetList.ToUpper() == "Y")
             {
-                //loop
-            }
-            else if(In.GetString("Do you want to list all cars?\n") == "N")
-            {
-                return;
+                foreach (Car c in myCars)
+                {
+                    Out.P("**************");
+                    Out.P($"Type: {c.CarType}" +
+                        $" Number of Doors: {c.NumberOfDoors}" +
+                        $" Speed: {c.Speed}" +
+                        $" Year: {c.Year}" +
+                        $" Price: {c.Price.GetValueOrDefault().ToString("c")}");
+                }
+
+                Out.P("**************");
             }
             
         }
